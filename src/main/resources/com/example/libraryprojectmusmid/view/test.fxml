@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+
+<AnchorPane prefHeight="419.0" prefWidth="608.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libraryprojectmusmid.view.test">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" />
+      <Button layoutX="272.0" layoutY="293.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="63.0" text="Button" />
+   </children>
+</AnchorPane>
