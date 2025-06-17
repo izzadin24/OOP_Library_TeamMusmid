@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.libraryprojectmusmid.controller.LoginController"
+            prefWidth="600" prefHeight="400" style="-fx-background-color: linear-gradient(to bottom right, #a3c1ff, #6b91e3);">
+
+    <VBox alignment="CENTER" spacing="20.0" layoutX="150.0" layoutY="100.0">
+        <Label text="myUMM Library" style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" />
+
+        <TextField fx:id="nimField" promptText="Masukkan NIM"
+                   style="-fx-background-radius: 20; -fx-padding: 10;" />
+        <PasswordField fx:id="passwordField" promptText="Masukkan Password atau PIC"
+                       style="-fx-background-radius: 20; -fx-padding: 10;" />
+
+        <Button text="LOGIN" onAction="#handleLogin"
+                style="-fx-background-radius: 20; -fx-padding: 10 20; -fx-font-weight: bold;" />
+
+        <Hyperlink text="Admin Login" onAction="#handleAdminLogin" />
+    </VBox>
+
+    <Label layoutX="20.0" layoutY="350.0" text="Butuh Bantuan? hubungi kami via WhatsApp" style="-fx-text-fill: white;" />
+    <Label layoutX="20.0" layoutY="370.0" text="+62 821 4377 7735" style="-fx-text-fill: white; -fx-font-weight: bold;" />
+</AnchorPane>

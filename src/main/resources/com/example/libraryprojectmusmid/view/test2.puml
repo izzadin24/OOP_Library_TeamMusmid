@@ -1,0 +1,166 @@
+@startuml
+class com.example.libraryprojectmusmid.service.UserService {
+- {static} UserService instance
+- List<User> userList
++ {static} UserService getInstance()
+- void loadMembersFromCsv(String)
++ User findUserByUsername(String)
++ boolean registerMember(String,String,String,String,String,String)
++ List<Member> getAllMembers()
++ List<User> getAllUsers()
+}
+
+
+class com.example.libraryprojectmusmid.model.user.Member {
+- String memberID
+- String fullName
+- String major
+- String email
+- List<Transaction> borrowedItems
++ String getMemberID()
++ String getFullName()
++ String getMajor()
++ String getEmail()
++ List<Transaction> getBorrowedItems()
+}
+
+
+class com.example.libraryprojectmusmid.model.transactions.Transaction {
+- String transactionID
+- BookItem bookItem
+- Member member
+- LocalDate borrowDate
+- LocalDate dueDate
+- LocalDate actualReturnDate
+- TransactionStatus status
++ String getTransactionID()
++ BookItem getBookItem()
++ Member getMember()
++ LocalDate getBorrowDate()
++ LocalDate getDueDate()
++ LocalDate getActualReturnDate()
++ TransactionStatus getStatus()
++ void setActualReturnDate(LocalDate)
++ void setStatus(TransactionStatus)
+}
+
+
+enum com.example.libraryprojectmusmid.model.transactions.TransactionStatus {
++  BORROWED
++  RETURNED
++  OVERDUE
+}
+
+class com.example.libraryprojectmusmid.model.book.NonFictionBook {
+- String subject
+- String deweyDecimal
++ void showBookInfo()
++ String getSubject()
++ void setSubject(String)
++ String getDeweyDecimal()
++ void setDeweyDecimal(String)
+}
+
+
+class com.example.libraryprojectmusmid.model.user.Admin {
+- String staffID
+- String fullName
++ String getStaffID()
++ String getFullName()
+}
+
+
+enum com.example.libraryprojectmusmid.model.book.BookStatus {
++  AVAILABLE
++  BORROWED
++  RESERVED
++  LOST
+}
+
+class com.example.libraryprojectmusmid.model.book.BookItem {
+- String barcode
+- Book book
+- BookStatus status
++ String getBarcode()
++ Book getBook()
++ BookStatus getStatus()
++ void setStatus(BookStatus)
+}
+
+
+class com.example.libraryprojectmusmid.service.BookService {
+- {static} BookService instance
+- List<Book> bookCatalog
+- List<BookItem> bookInventory
++ {static} BookService getInstance()
+- void loadBooksFromCsv(String)
++ Book findBookByIsbn(String)
+- void addBookItems(Book,int)
++ List<Book> searchBooks(String)
++ BookItem findAvailableBookItem(String)
++ List<Book> getAllBooks()
+}
+
+
+class com.example.libraryprojectmusmid.model.book.FictionBook {
+- String genre
+- String seriesName
++ void showBookInfo()
++ String getGenre()
++ void setGenre(String)
++ String getSeriesName()
++ void setSeriesName(String)
+}
+
+
+abstract class com.example.libraryprojectmusmid.model.book.Book {
+- String title
+- String author
+- String publisher
+- String ISBN
++ {abstract}void showBookInfo()
++ String getTitle()
++ void setTitle(String)
++ String getAuthor()
++ void setAuthor(String)
++ String getPublisher()
++ void setPublisher(String)
++ String getISBN()
++ void setISBN(String)
+}
+
+
+abstract class com.example.libraryprojectmusmid.model.user.User {
+# String username
+# String password
+# Role role
++ String getUsername()
++ Role getRole()
++ boolean authenticate(String)
+}
+
+
+enum com.example.libraryprojectmusmid.model.user.Role {
++  ADMIN
++  MEMBER
+}
+
+class com.example.libraryprojectmusmid.service.AuthenticationService {
+- {static} AuthenticationService instance
+- UserService userService
+- User currentUser
++ {static} AuthenticationService getInstance()
++ boolean login(String,String)
++ void logout()
++ User getCurrentUser()
++ Role getCurrentUserRole()
+}
+
+
+
+
+com.example.libraryprojectmusmid.model.user.User <|-- com.example.libraryprojectmusmid.model.user.Member
+com.example.libraryprojectmusmid.model.book.Book <|-- com.example.libraryprojectmusmid.model.book.NonFictionBook
+com.example.libraryprojectmusmid.model.user.User <|-- com.example.libraryprojectmusmid.model.user.Admin
+com.example.libraryprojectmusmid.model.book.Book <|-- com.example.libraryprojectmusmid.model.book.FictionBook
+@enduml
