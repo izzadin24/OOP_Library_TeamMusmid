@@ -1,0 +1,128 @@
+@startuml
+class com.example.libraryprojectmusmid.model.book.BookItem {
+- String barcode
+- Book book
+- BookStatus status
++ String getBarcode()
++ Book getBook()
++ BookStatus getStatus()
++ void setStatus(BookStatus)
+}
+l
+l
+class com.example.libraryprojectmusmid.model.book.FictionBook {
+- String genre
+- String seriesName
++ void showBookInfo()
++ String getGenre()
++ void setGenre(String)
++ String getSeriesName()
++ void setSeriesName(String)
+}
+
+
+abstract class com.example.libraryprojectmusmid.model.book.Book {
+- String title
+- String author
+- String publisher
+- String ISBN
++ {abstract}void showBookInfo()
++ String getTitle()
++ void setTitle(String)
++ String getAuthor()
++ void setAuthor(String)
++ String getPublisher()
++ void setPublisher(String)
++ String getISBN()
++ void setISBN(String)
+}
+
+
+enum com.example.libraryprojectmusmid.model.book.BookStatus {
++  AVAILABLE
++  BORROWED
++  RESERVED
++  LOST
+}
+
+abstract class com.example.libraryprojectmusmid.model.user.User {
+# String username
+# String password
+# Role role
++ String getUsername()
++ Role getRole()
++ boolean authenticate(String)
+}
+
+
+enum com.example.libraryprojectmusmid.model.user.Role {
++  ADMIN
++  MEMBER
+}
+
+class com.example.libraryprojectmusmid.model.user.Member {
+- String memberID
+- String fullName
+- String major
+- String email
+- List<Transaction> borrowedItems
++ String getMemberID()
++ String getFullName()
++ String getMajor()
++ String getEmail()
++ List<Transaction> getBorrowedItems()
+}
+
+
+class com.example.libraryprojectmusmid.model.transactions.Transaction {
+- String transactionID
+- BookItem bookItem
+- Member member
+- LocalDate borrowDate
+- LocalDate dueDate
+- LocalDate actualReturnDate
+- TransactionStatus status
++ String getTransactionID()
++ BookItem getBookItem()
++ Member getMember()
++ LocalDate getBorrowDate()
++ LocalDate getDueDate()
++ LocalDate getActualReturnDate()
++ TransactionStatus getStatus()
++ void setActualReturnDate(LocalDate)
++ void setStatus(TransactionStatus)
+}
+
+
+enum com.example.libraryprojectmusmid.model.transactions.TransactionStatus {
++  BORROWED
++  RETURNED
++  OVERDUE
+}
+
+class com.example.libraryprojectmusmid.model.book.NonfictionBook {
+- String subject
+- String deweyDecimal
++ void showBookInfo()
++ String getSubject()
++ void setSubject(String)
++ String getDeweyDecimal()
++ void setDeweyDecimal(String)
+}
+
+
+class com.example.libraryprojectmusmid.model.user.Admin {
+- String staffID
+- String fullName
++ String getStaffID()
++ String getFullName()
+}
+
+
+
+
+com.example.libraryprojectmusmid.model.book.Book <|-- com.example.libraryprojectmusmid.model.book.FictionBook
+com.example.libraryprojectmusmid.model.user.User <|-- com.example.libraryprojectmusmid.model.user.Member
+com.example.libraryprojectmusmid.model.book.Book <|-- com.example.libraryprojectmusmid.model.book.NonfictionBook
+com.example.libraryprojectmusmid.model.user.User <|-- com.example.libraryprojectmusmid.model.user.Admin
+@enduml
