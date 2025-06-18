@@ -27,8 +27,7 @@ public class BookListViewController {
 
     private final BookService bookService = BookService.getInstance();
 
-    @FX
-    
+    @FXML
     public void initialize() {
         // Logika untuk mengisi tabel (tidak berubah)
         titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));

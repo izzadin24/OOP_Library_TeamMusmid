@@ -13,8 +13,8 @@ public class NonFictionBook extends Book {
      * @param subject Subjek atau topik utama buku
      * @param deweyDecimal Nomor Klasifikasi Desimal Dewey
      */
-    public NonFictionBook(String title, String author, String publisher, String ISBN, String subject, String deweyDecimal) {
-        super(title, author, publisher, ISBN); // Memanggil konstruktor kelas induk
+    public NonFictionBook(String title, String author, String publisher, String ISBN, String subject, String deweyDecimal, String coverImagePath) {
+        super(title, author, publisher, ISBN, coverImagePath); // Memanggil konstruktor kelas induk
         this.subject = subject;
         this.deweyDecimal = deweyDecimal;
     }

@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane prefHeight="480.0" prefWidth="720.0" style="-fx-background-color: #f0f8ff;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libraryprojectmusmid.controller.MemberDashboardController">
     <top>
@@ -30,46 +29,55 @@
                 <RowConstraints minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
-                <Button fx:id="bukuTersediaButton" contentDisplay="TOP" onAction="#handleBukuTersedia" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                <Button fx:id="bukuDipinjamButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleBukuDipinjam" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="0">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="bukuTersediaIconLabel" /><Label text="Buku Tersedia" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="bukuDipinjamIconLabel" /><Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Riwayat Peminjaman" /></children></VBox>
                     </graphic>
                 </Button>
 
-                <Button fx:id="bukuDipinjamButton" contentDisplay="TOP" onAction="#handleBukuDipinjam" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                <Button fx:id="lihatBukuButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleLihatBuku" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="1">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="bukuDipinjamIconLabel" /><Label text="Buku Dipinjam" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="lihatBukuIconLabel" /><Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Cari Buku" /></children></VBox>
                     </graphic>
                 </Button>
 
-                <Button fx:id="statusAkunButton" contentDisplay="TOP" onAction="#handleStatusAkun" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="0">
+                <Button fx:id="kembalikanBukuButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleKembalikanBuku" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="statusAkunIconLabel" /><Label text="Status Akun" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0">
+                            <children>
+                                <Label fx:id="kembalikanBukuIconLabel" />
+                                <Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Kembalikan Buku" />
+                            </children>
+                        </VBox>
                     </graphic>
                 </Button>
 
-                <Button fx:id="pinjamBukuButton" contentDisplay="TOP" onAction="#handlePinjamBuku" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                <Button fx:id="bukuTersediaButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleBukuTersedia" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="0">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="pinjamBukuIconLabel" /><Label text="Pinjam Buku" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="bukuTersediaIconLabel" /><Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Buku Tersedia" /></children></VBox>
                     </graphic>
                 </Button>
-
-                <Button fx:id="logoutButton" contentDisplay="TOP" onAction="#handleLogout" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                <Button fx:id="statusAkunButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleStatusAkun" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="2" GridPane.rowIndex="0">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="logoutIconLabel" /><Label text="Logout" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="statusAkunIconLabel" /><Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Status Akun" /></children></VBox>
                     </graphic>
                 </Button>
-
-                <Button fx:id="lihatBukuButton" contentDisplay="TOP" onAction="#handleLihatBuku" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" maxWidth="1.7976931348623157E308" maxHeight="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.rowIndex="1">
+                <Button fx:id="pinjamBukuButton" contentDisplay="TOP" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handlePinjamBuku" style="-fx-background-color: #ffffff; -fx-background-radius: 15;" textAlignment="CENTER" GridPane.columnIndex="0" GridPane.rowIndex="1">
                     <graphic>
-                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="lihatBukuIconLabel" /><Label text="Lihat Buku" style="-fx-font-weight: bold; -fx-text-fill: #333;" /></children></VBox>
+                        <VBox alignment="CENTER" spacing="10.0"><children><Label fx:id="pinjamBukuIconLabel" /><Label style="-fx-font-weight: bold; -fx-text-fill: #333;" text="Pinjam Buku" /></children></VBox>
                     </graphic>
                 </Button>
-
             </children>
             <BorderPane.margin>
                 <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
             </BorderPane.margin>
         </GridPane>
     </center>
+    <bottom>
+        <Button fx:id="logoutButton" onAction="#handleLogout" mnemonicParsing="false" text="Logout" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" />
+            </BorderPane.margin>
+        </Button>
+    </bottom>
 </BorderPane>

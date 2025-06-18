@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #AEC6CF;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.libraryprojectmusmid.controller.LoanViewController">
+    <top>
+        <VBox alignment="CENTER" spacing="10.0" style="-fx-padding: 20 20 10 20;">
+            <children>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="myUMM Library" />
+                <Label fx:id="loanAlertLabel" style="-fx-font-weight: bold; -fx-background-color: #FFDDC1; -fx-padding: 5 10; -fx-background-radius: 10;" text="Alert: Memuat data kuota peminjaman..." />
+
+                <ScrollPane fx:id="recommendationScrollPane" fitToWidth="false" fitToHeight="true" hbarPolicy="NEVER" vbarPolicy="NEVER" style="-fx-background: transparent; -fx-background-color: transparent;" prefHeight="150.0">
+                    <content>
+                        <HBox fx:id="recommendationsBox" alignment="CENTER" spacing="20.0" style="-fx-padding: 10;" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox alignment="TOP_CENTER" spacing="15.0" style="-fx-padding: 10 40 20 40;">
+            <children>
+                <TextField fx:id="searchField" onAction="#handleSearch" prefHeight="40.0" promptText="Cari berdasarkan Judul atau Penulis..." style="-fx-background-color: white; -fx-background-radius: 20;"/>
+
+                <Label text="Hasil Pencarian:" style="-fx-font-weight: bold; -fx-text-fill: white;" />
+
+                <StackPane fx:id="searchResultContainer" style="-fx-background-color: transparent; -fx-min-height: 220;">
+                    <children>
+                        <Label fx:id="notFoundLabel" text="Buku tidak ditemukan. Gunakan kata kunci lain." visible="false" />
+
+                        <HBox fx:id="searchResultPane" alignment="CENTER" spacing="20.0" style="-fx-padding: 20;" visible="false">
+                            <children>
+                                <ImageView fx:id="searchCoverImage" fitHeight="180.0" fitWidth="120.0" pickOnBounds="true" preserveRatio="true" />
+                                <VBox spacing="10.0">
+                                    <children>
+                                        <GridPane hgap="10.0" vgap="5.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints prefWidth="100.0" />
+                                                <ColumnConstraints prefWidth="10.0" />
+                                                <ColumnConstraints />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                                <RowConstraints />
+                                            </rowConstraints>
+                                            <children>
+                                                <Label text="JUDUL" style="-fx-font-weight: bold;" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" />
+                                                <Label fx:id="judulLabel" text="..." GridPane.columnIndex="2" />
+
+                                                <Label text="PENGARANG" style="-fx-font-weight: bold;" GridPane.rowIndex="1" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label fx:id="pengarangLabel" text="..." GridPane.columnIndex="2" GridPane.rowIndex="1" />
+
+                                                <Label text="ISSN" style="-fx-font-weight: bold;" GridPane.rowIndex="2" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                <Label fx:id="isbnLabel" text="..." GridPane.columnIndex="2" GridPane.rowIndex="2" />
+
+                                                <Label text="GENRE" style="-fx-font-weight: bold;" GridPane.rowIndex="3" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                <Label fx:id="genreLabel" text="..." GridPane.columnIndex="2" GridPane.rowIndex="3" />
+
+                                                <Label text="STOK" style="-fx-font-weight: bold;" GridPane.rowIndex="4" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                                                <Label fx:id="stokLabel" text="..." GridPane.columnIndex="2" GridPane.rowIndex="4" />
+
+                                                <Label text="JUMLAH TERSEDIA:" style="-fx-font-weight: bold;" GridPane.rowIndex="5" />
+                                                <Label text=":" style="-fx-font-weight: bold;" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                                <Label fx:id="tersediaLabel" text="..." GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                                            </children>
+                                        </GridPane>
+                                        <Button fx:id="searchBorrowButton" onAction="#handleSearchBorrow" style="-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-weight: bold;" text="PINJAM" />
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                    </children>
+                </StackPane>
+            </children>
+        </VBox>
+    </center>
+
+    <bottom>
+        <BorderPane prefHeight="60.0">
+            <left>
+                <Button fx:id="backButton" mnemonicParsing="false" onAction="#handleBackButton" style="-fx-background-radius: 20;" text="&lt; Kembali">
+                    <BorderPane.margin>
+                        <Insets bottom="20.0" left="20.0" />
+                    </BorderPane.margin>
+                </Button>
+            </left>
+        </BorderPane>
+    </bottom>
+</BorderPane>

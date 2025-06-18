@@ -26,11 +26,11 @@ public class BookService {
         // =================================================================================
 
         // Laskar Pelangi, Bumi Manusia, Cantik Itu Luka adalah Fiksi
-        Book book1 = new FictionBook("Laskar Pelangi", "Andrea Hirata", "Bentang Pustaka", "978-979-1227-2-7", "Novel", "Tetralogi Laskar Pelangi"); // <-- DIUBAH
-        Book book2 = new FictionBook("Bumi Manusia", "Pramoedya Ananta Toer", "Hasta Mitra", "978-979-97312-3-4", "Historical Fiction", "Buru Quartet"); // <-- DIUBAH
-        Book book3 = new FictionBook("Cantik Itu Luka", "Eka Kurniawan", "Gramedia", "978-602-03-1258-0", "Magical Realism", ""); // <-- DIUBAH
+        Book book1 = new FictionBook("Laskar Pelangi", "Andrea Hirata", "Bentang Pustaka", "978-979-1227-2-7", "Novel", "Tetralogi Laskar Pelangi", "/images/Laskar_pelangi.jpg"); // <-- DIUBAH
+        Book book2 = new FictionBook("Bumi Manusia", "Pramoedya Ananta Toer", "Hasta Mitra", "978-979-97312-3-4", "Historical Fiction", "Buru Quartet", "/images/Laskar_pelangi.jpg"); // <-- DIUBAH
+        Book book3 = new FictionBook("Cantik Itu Luka", "Eka Kurniawan", "Gramedia", "978-602-03-1258-0", "Magical Realism", "", "/images/Laskar_pelangi.jpg"); // <-- DIUBAH
         // Filosofi Teras adalah Non-Fiksi
-        Book book4 = new NonFictionBook("Filosofi Teras", "Henry Manampiring", "Kompas", "978-602-412-518-9", "Self-Help / Philosophy", "158.1"); // <-- DIUBAH
+        Book book4 = new NonFictionBook("Filosofi Teras", "Henry Manampiring", "Kompas", "978-602-412-518-9", "Self-Help / Philosophy", "158.1", "images/FilosofiTeras.jpg"); // <-- DIUBAH
 
         // Menambahkan buku dan itemnya ke dalam list
         bookCatalog.add(book1); addBookItems(book1, 5); // Contoh: tambah 5 eksemplar
@@ -70,9 +70,9 @@ public class BookService {
 
         Book newBook;
         if ("Fiction".equalsIgnoreCase(category)) {
-            newBook = new FictionBook(title, author, publisher, isbn, "General Fiction", "");
+            newBook = new FictionBook(title, author, publisher, isbn, "General Fiction", "", "/images/Laskar_pelangi.jpg" );
         } else if ("NonFiction".equalsIgnoreCase(category)) {
-            newBook = new NonFictionBook(title, author, publisher, isbn, "General Nonfiction", "");
+            newBook = new NonFictionBook(title, author, publisher, isbn, "General Nonfiction", "", "/images/Laskar_pelangi.jpg");
         } else {
             System.err.println("Error: Kategori '" + category + "' tidak valid.");
             return false;
@@ -96,10 +96,6 @@ public class BookService {
             long currentCopies = bookInventory.stream().filter(item -> item.getBook().getISBN().equals(book.getISBN())).count();
             String barcode = book.getISBN() + "-" + (currentCopies + 1);
 
-            // =================================================================================
-            // PERBAIKAN PENTING KEDUA: Baris ini sebelumnya di-comment dan salah.
-            // Konstruktor BookItem hanya butuh barcode dan book.
-            // =================================================================================
             bookInventory.add(new BookItem(barcode, book)); // <-- DIUBAH & DIAKTIFKAN
         }
     }

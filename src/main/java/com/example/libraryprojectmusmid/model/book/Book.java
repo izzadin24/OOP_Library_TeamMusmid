@@ -5,6 +5,7 @@ public abstract class Book {
     private String author;
     private String publisher;
     private String ISBN;
+    private String coverImagePath;
 
     /**
      * Konstruktor untuk kelas Book.
@@ -14,11 +15,12 @@ public abstract class Book {
      * @param publisher Penerbit buku
      * @param ISBN Nomor ISBN buku
      */
-    public Book(String title, String author, String publisher, String ISBN) {
+    public Book(String title, String author, String publisher, String ISBN, String coverImagePath) {
         this.title = title;
         this.author = author;
         this.publisher = publisher;
         this.ISBN = ISBN;
+        this.coverImagePath = coverImagePath;
     }
 
     /**
@@ -59,6 +61,10 @@ public abstract class Book {
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+    public String getCoverImagePath() {
+        return coverImagePath;
     }
 }
 

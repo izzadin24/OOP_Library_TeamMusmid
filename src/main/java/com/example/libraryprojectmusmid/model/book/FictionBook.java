@@ -13,8 +13,8 @@ public class FictionBook extends Book {
      * @param genre Genre dari buku fiksi
      * @param seriesName Nama seri jika buku ini adalah bagian dari seri
      */
-    public FictionBook(String title, String author, String publisher, String ISBN, String genre, String seriesName) {
-        super(title, author, publisher, ISBN); // Memanggil konstruktor kelas induk
+    public FictionBook(String title, String author, String publisher, String ISBN, String genre, String seriesName, String coverImagePath) {
+        super(title, author, publisher, ISBN, coverImagePath); // Memanggil konstruktor kelas induk
         this.genre = genre;
         this.seriesName = seriesName;
     }

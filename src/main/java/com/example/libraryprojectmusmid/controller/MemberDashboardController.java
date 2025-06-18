@@ -2,46 +2,41 @@ package com.example.libraryprojectmusmid.controller;
 
 import com.example.libraryprojectmusmid.util.NavigationUtil;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button; // <-- Tambahkan import untuk Button
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import java.io.InputStream;
+import java.util.Objects;
 
 public class MemberDashboardController {
 
-    // Deklarasi untuk menampung ikon-ikon (sudah benar)
+    // Deklarasi FXML untuk ikon
     @FXML private Label bukuTersediaIconLabel;
     @FXML private Label bukuDipinjamIconLabel;
     @FXML private Label statusAkunIconLabel;
     @FXML private Label pinjamBukuIconLabel;
-    @FXML private Label logoutIconLabel; // Menggantikan placeholder
+    @FXML private Label kembalikanBukuIconLabel; // <-- Nama diubah agar sesuai
     @FXML private Label lihatBukuIconLabel;
 
-    /**
-     * Metode yang dipanggil otomatis saat FXML dimuat.
-     */
+    // Deklarasi FXML untuk Tombol Logout baru
+    @FXML private Button logoutButton;
+
     @FXML
     public void initialize() {
-        // Panggil metode untuk memuat semua ikon
         loadAllIcons();
     }
-
-    // =================================================================
-    // INI ADALAH METODE-METODE HANDLER YANG HILANG
-    // Setiap metode ini terhubung ke satu tombol di FXML.
-    // =================================================================
 
     @FXML
     private void handleBukuTersedia() {
         System.out.println("Tombol 'Buku Tersedia' diklik!");
-        // Pindah ke halaman daftar buku
         NavigationUtil.navigateTo(bukuTersediaIconLabel, "/com/example/libraryprojectmusmid/view/BookListView.fxml");
     }
 
     @FXML
     private void handleBukuDipinjam() {
-        System.out.println("Tombol 'Buku Dipinjam' diklik!");
-        // TODO: Tambahkan logika untuk menampilkan buku yang sedang dipinjam user
+        System.out.println("Tombol 'Riwayat Peminjaman' diklik!");
+        // TODO: Arahkan ke halaman riwayat peminjaman
     }
 
     @FXML
@@ -49,37 +44,44 @@ public class MemberDashboardController {
         System.out.println("Tombol 'Status Akun' diklik! Menavigasi ke halaman akun...");
         NavigationUtil.navigateTo(statusAkunIconLabel, "/com/example/libraryprojectmusmid/view/AccountView.fxml");
     }
+
     @FXML
     private void handlePinjamBuku() {
         System.out.println("Tombol 'Pinjam Buku' diklik!");
-        // TODO: Tambahkan logika untuk pindah ke halaman peminjaman
+        NavigationUtil.navigateTo(pinjamBukuIconLabel, "/com/example/libraryprojectmusmid/view/LoanView.fxml");
     }
 
+    // ==========================================================
+    // PERUBAHAN DI SINI: Nama metode diubah
+    // ==========================================================
+    @FXML
+    private void handleKembalikanBuku() {
+        System.out.println("Tombol 'Kembalikan Buku' diklik!");
+        // TODO: Arahkan ke halaman pengembalian buku
+    }
+
+    // ==========================================================
+    // PERUBAHAN DI SINI: Metode baru untuk tombol Logout di bawah
+    // ==========================================================
     @FXML
     private void handleLogout() {
-        System.out.println("Tombol 'Logout' diklik!");
-        // Kembali ke halaman login
-        NavigationUtil.navigateTo(logoutIconLabel, "/com/example/libraryprojectmusmid/view/library_login.fxml");
+        System.out.println("Tombol 'Logout' di bawah diklik!");
+        // Logika untuk kembali ke halaman login
+        NavigationUtil.navigateTo(logoutButton, "/com/example/libraryprojectmusmid/view/library_login.fxml");
     }
 
     @FXML
     private void handleLihatBuku() {
-        System.out.println("Tombol 'Lihat Buku' diklik! Menavigasi ke halaman pencarian...");
-        // Arahkan ke halaman pencarian buku yang baru
+        System.out.println("Tombol 'Cari Buku' diklik! Menavigasi ke halaman pencarian...");
         NavigationUtil.navigateTo(lihatBukuIconLabel, "/com/example/libraryprojectmusmid/view/SearchBookView.fxml");
     }
 
-    // =================================================================
-    // KODE UNTUK MEMUAT GAMBAR IKON (TIDAK PERLU DIUBAH)
-    // =================================================================
-
     private void loadAllIcons() {
-        // Pastikan path dan nama file gambar sesuai
         loadIcon(bukuTersediaIconLabel, "/images/books.png");
-        loadIcon(bukuDipinjamIconLabel, "/images/addBook.png");
+        loadIcon(bukuDipinjamIconLabel, "/images/addBook.png"); // Ganti ikon jika perlu
         loadIcon(statusAkunIconLabel, "/images/user-access.png");
         loadIcon(pinjamBukuIconLabel, "/images/loanbook.png");
-        loadIcon(logoutIconLabel, "/images/logout.png"); // Ganti dengan ikon logout jika ada
+        loadIcon(kembalikanBukuIconLabel, "/images/kembalikan.png"); // Ganti ikon jika perlu
         loadIcon(lihatBukuIconLabel, "/images/viewbook.png");
     }
 
@@ -93,7 +95,13 @@ public class MemberDashboardController {
                 label.setGraphic(imageView);
             } else {
                 System.err.println("Gambar tidak ditemukan di path: " + imagePath);
-                label.setText("!");
+                // Fallback ke gambar default jika tidak ada
+                InputStream defaultStream = getClass().getResourceAsStream("/images/default-icon.png");
+                if (defaultStream != null) {
+                    label.setGraphic(new ImageView(new Image(defaultStream, 64, 64, true, true)));
+                } else {
+                    label.setText("!");
+                }
             }
         } catch (Exception e) {
             System.err.println("Error saat memuat gambar: " + imagePath);
