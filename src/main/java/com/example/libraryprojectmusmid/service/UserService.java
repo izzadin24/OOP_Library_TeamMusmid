@@ -23,6 +23,17 @@ public class UserService {
 
     private UserService() {
         this.userList = new ArrayList<>();
+        userList.add(new Admin("admin01", "adminpass", "ADM01", "Anton Wijaya"));
+        userList.add(new Member(
+                "123",            // username (dianggap sebagai NIM)
+                "123",            // password
+                "M-TEST001",      // memberID
+                "Mahasiswa Tes",  // fullName
+                "Teknik Informatika", // major
+                "tes@student.umm.ac.id" // email
+        ));
+
+
         // Muat data Admin secara hardcode (lebih aman)
         userList.add(new Admin("admin", "admin123", "S001", "Admin Perpustakaan"));
         // Muat data Member dari file CSV

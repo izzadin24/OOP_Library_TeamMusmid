@@ -71,13 +71,3 @@ public class Transaction {
     }
 }
 
-enum TransactionStatus {
-
-    BORROWED,
-
-
-    RETURNED,
-
-
-    OVERDUE
-}

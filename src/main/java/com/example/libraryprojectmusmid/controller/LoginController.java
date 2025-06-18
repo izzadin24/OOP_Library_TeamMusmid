@@ -1,44 +1,110 @@
 package com.example.libraryprojectmusmid.controller;
 
+import com.example.libraryprojectmusmid.Main; // Impor kelas Main
+import com.example.libraryprojectmusmid.model.user.Role;
+import com.example.libraryprojectmusmid.service.AuthenticationService;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.io.IOException;
 
 public class LoginController {
 
-    @FXML
-    private TextField nimField;
+    @FXML private TextField nimField;
+    @FXML private PasswordField passwordField;
+    @FXML private Button loginButton;
+    @FXML private Hyperlink adminLoginLink;
 
-    @FXML
-    private PasswordField passwordField;
+    private final AuthenticationService authService = AuthenticationService.getInstance();
+    private boolean isAdminMode = false;
 
     @FXML
     private void handleLogin() {
-        String nim = nimField.getText();
+        String username = nimField.getText();
         String password = passwordField.getText();
 
-        if (isValidLogin(nim, password)) {
-            showAlert(Alert.AlertType.INFORMATION, "Login berhasil!");
-            // navigasi ke halaman berikutnya
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Input Kosong", "NIM/Username dan Password tidak boleh kosong.");
+            return;
+        }
+
+        boolean loginSuccess = authService.login(username, password);
+
+        if (loginSuccess) {
+            Role role = authService.getCurrentUserRole();
+            showAlert(Alert.AlertType.INFORMATION, "Login Berhasil!", "Selamat datang! Anda login sebagai " + role);
+
+            // === INI BAGIAN NAVIGASINYA ===
+            if (role == Role.ADMIN) {
+                // Pindah ke Dashboard Admin
+                navigateToPage("/com/example/libraryprojectmusmid/view/AdminDashboard.fxml");
+            } else if (role == Role.MEMBER) {
+                // Pindah ke Dashboard Member
+                navigateToPage("/com/example/libraryprojectmusmid/view/MemberDashboard.fxml");
+            }
+
         } else {
-            showAlert(Alert.AlertType.ERROR, "NIM atau Password salah.");
+            showAlert(Alert.AlertType.ERROR, "Login Gagal", "Kredensial salah.");
         }
     }
 
+    /**
+     * Metode untuk berpindah dari satu halaman FXML ke halaman FXML lain.
+     * @param fxmlFile Path ke file FXML tujuan (dimulai dari root resources).
+     */
+    private void navigateToPage(String fxmlFile) {
+        try {
+            // Muat file FXML tujuan
+            FXMLLoader loader = new FXMLLoader(Main.class.getResource(fxmlFile));
+            Parent root = loader.load();
+
+            // Dapatkan stage (jendela) saat ini dari elemen mana saja di scene
+            Stage stage = (Stage) nimField.getScene().getWindow();
+
+            // Buat scene baru dengan konten dari FXML tujuan
+            Scene scene = new Scene(root);
+
+            // Ganti scene di stage dengan scene yang baru
+            stage.setScene(scene);
+            stage.centerOnScreen(); // Opsional: pusatkan jendela setelah ganti scene
+            stage.show();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+            showAlert(Alert.AlertType.ERROR, "Error Navigasi", "Gagal memuat halaman: " + fxmlFile);
+        }
+    }
+
+    // Metode lain yang sudah ada (toggleLoginMode, updateUIForMode, showAlert)
+    // biarkan seperti sebelumnya...
+
     @FXML
-    private void handleAdminLogin() {
-        showAlert(Alert.AlertType.INFORMATION, "Pindah ke halaman login admin...");
-        // navigasi ke login admin
+    private void toggleLoginMode() {
+        isAdminMode = !isAdminMode;
+        updateUIForMode();
     }
 
-    private boolean isValidLogin(String nim, String password) {
-        // Simulasi validasi login mahasiswa (bisa diganti koneksi DB)
-        return nim.equals("202310370311123") && password.equals("perpustakaan123");
+    private void updateUIForMode() {
+        if (isAdminMode) {
+            nimField.setPromptText("Masukkan Username Admin");
+            passwordField.setPromptText("Masukkan Password Admin");
+            adminLoginLink.setText("Login sebagai Mahasiswa");
+        } else {
+            nimField.setPromptText("Masukkan NIM");
+            passwordField.setPromptText("Masukkan Password atau PIC");
+            adminLoginLink.setText("Admin Login");
+        }
+        nimField.clear();
+        passwordField.clear();
     }
 
-    private void showAlert(Alert.AlertType type, String message) {
+    private void showAlert(Alert.AlertType type, String title, String message) {
         Alert alert = new Alert(type);
+        alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
         alert.showAndWait();

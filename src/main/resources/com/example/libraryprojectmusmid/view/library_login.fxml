@@ -1,26 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400" prefWidth="600" style="-fx-background-color: linear-gradient(to bottom right, #a3c1ff, #6b91e3);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/23.0.1" fx:controller="com.example.libraryprojectmusmid.controller.LoginController">
+<BorderPane
+        maxHeight="-Infinity"
+        maxWidth="-Infinity"
+        minHeight="-Infinity"
+        minWidth="-Infinity"
+        prefHeight="400.0"
+        prefWidth="600.0"
+        style="-fx-background-color: linear-gradient(to bottom right, #a3c1ff, #6b91e3);"
+        xmlns="http://javafx.com/javafx/21"
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:controller="com.example.libraryprojectmusmid.controller.LoginController">
 
-    <VBox alignment="CENTER" layoutX="150.0" layoutY="100.0" prefHeight="233.0" prefWidth="308.0" spacing="20.0">
-        <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="myUMM Library" />
+    <center>
+        <VBox alignment="CENTER" maxWidth="310.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <children>
+                <Label style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: white;" text="myUMM Library" />
+                <TextField fx:id="nimField" promptText="Masukkan NIM" style="-fx-background-radius: 20; -fx-padding: 10;" />
+                <PasswordField fx:id="passwordField" promptText="Masukkan Password atau PIC" style="-fx-background-radius: 20; -fx-padding: 10;" />
+                <Button onAction="#handleLogin" style="-fx-background-radius: 20; -fx-padding: 10 20; -fx-font-weight: bold;" text="LOGIN" />
+                <Hyperlink fx:id="adminLoginLink" onAction="#toggleLoginMode" text="Admin Login" />
+            </children>
+            <padding>
+                <Insets left="20.0" right="20.0" />
+            </padding>
+        </VBox>
+    </center>
 
-        <TextField fx:id="nimField" promptText="Masukkan NIM" style="-fx-background-radius: 20; -fx-padding: 10;" />
-        <PasswordField fx:id="passwordField" promptText="Masukkan Password atau PIC" style="-fx-background-radius: 20; -fx-padding: 10;" />
+    <bottom>
+        <VBox spacing="5.0" BorderPane.alignment="BOTTOM_LEFT">
+            <children>
+                <Label style="-fx-text-fill: white;" text="Butuh Bantuan? hubungi kami via WhatsApp" />
+                <Label style="-fx-text-fill: white; -fx-font-weight: bold;" text="+62 821 4377 7735" />
+            </children>
+            <padding>
+                <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+            </padding>
+        </VBox>
+    </bottom>
 
-        <Button onAction="#handleLogin" style="-fx-background-radius: 20; -fx-padding: 10 20; -fx-font-weight: bold;" text="LOGIN" />
-
-        <Hyperlink onAction="#handleAdminLogin" text="Admin Login" />
-    </VBox>
-
-    <Label layoutX="20.0" layoutY="350.0" style="-fx-text-fill: white;" text="Butuh Bantuan? hubungi kami via WhatsApp" />
-    <Label layoutX="20.0" layoutY="370.0" style="-fx-text-fill: white; -fx-font-weight: bold;" text="+62 821 4377 7735" />
-</AnchorPane>
+</BorderPane>
