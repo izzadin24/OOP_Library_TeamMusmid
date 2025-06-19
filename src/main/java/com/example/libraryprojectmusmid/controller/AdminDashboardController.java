@@ -33,7 +33,7 @@ public class AdminDashboardController {
     private void handleKelolaBuku() {
         System.out.println("Tombol 'Kelola Buku' diklik!");
         // TODO: Arahkan ke halaman manajemen buku untuk admin
-        // Contoh: NavigationUtil.navigateTo(logoutButton, "/com/example/libraryprojectmusmid/view/AdminBookManagement.fxml");
+        NavigationUtil.navigateTo(kelolaBukuIconLabel, "/com/example/libraryprojectmusmid/view/ManageBookView.fxml");
     }
 
     @FXML
@@ -46,7 +46,7 @@ public class AdminDashboardController {
     @FXML
     private void handleLaporan() {
         System.out.println("Tombol 'Laporan' diklik!");
-        // TODO: Arahkan ke halaman laporan
+        NavigationUtil.navigateTo(laporanIconLabel, "/com/example/libraryprojectmusmid/view/StatisticView.fxml");
     }
 
     @FXML

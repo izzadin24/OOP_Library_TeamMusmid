@@ -132,6 +132,41 @@ public class LoanService {
     }
 
     /**
+     * Mendapatkan semua transaksi yang statusnya masih BORROWED.
+     * @return List dari transaksi yang aktif.
+     */
+    public List<Transaction> getAllActiveLoans() {
+        return allTransactions.stream()
+                .filter(trx -> trx.getStatus() == TransactionStatus.BORROWED)
+                .collect(Collectors.toList());
+    }
+
+    /**
+     * Menghitung jumlah peminjaman yang terjadi di bulan dan tahun saat ini.
+     * @return Jumlah transaksi peminjaman bulan ini.
+     */
+    public long getMonthlyBorrowCount() {
+        LocalDate now = LocalDate.now();
+        return allTransactions.stream()
+                .filter(trx -> trx.getBorrowDate().getMonth() == now.getMonth() &&
+                        trx.getBorrowDate().getYear() == now.getYear())
+                .count();
+    }
+
+    /**
+     * Menghitung jumlah pengembalian (termasuk yang telat) di bulan dan tahun saat ini.
+     * @return Jumlah transaksi pengembalian bulan ini.
+     */
+    public long getMonthlyReturnCount() {
+        LocalDate now = LocalDate.now();
+        return allTransactions.stream()
+                .filter(trx -> trx.getActualReturnDate() != null &&
+                        trx.getActualReturnDate().getMonth() == now.getMonth() &&
+                        trx.getActualReturnDate().getYear() == now.getYear())
+                .count();
+    }
+
+    /**
      * Mengembalikan semua transaksi yang pernah tercatat.
      * Berguna untuk laporan atau riwayat admin.
      * @return List dari semua transaksi.
