@@ -64,7 +64,7 @@ public class AdminDashboardController {
         // Ganti nama file gambar sesuai dengan yang Anda miliki
         loadIcon(kelolaBukuIconLabel, "/images/books.png");
         loadIcon(kelolaMemberIconLabel, "/images/user-access.png");
-        loadIcon(laporanIconLabel, "/images/report.png"); // Anda mungkin perlu ikon baru untuk ini
+        loadIcon(laporanIconLabel, "/images/statistics.png");
     }
 
     private void loadIcon(Label label, String imagePath) {

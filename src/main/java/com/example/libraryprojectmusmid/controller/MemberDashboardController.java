@@ -82,7 +82,7 @@ public class MemberDashboardController {
         loadIcon(bukuDipinjamIconLabel, "/images/addBook.png"); // Ganti ikon jika perlu
         loadIcon(statusAkunIconLabel, "/images/user-access.png");
         loadIcon(pinjamBukuIconLabel, "/images/loanbook.png");
-        loadIcon(kembalikanBukuIconLabel, "/images/kembalikan.png"); // Ganti ikon jika perlu
+        loadIcon(kembalikanBukuIconLabel, "/images/returnBook.png"); // Ganti ikon jika perlu
         loadIcon(lihatBukuIconLabel, "/images/viewbook.png");
     }
 
