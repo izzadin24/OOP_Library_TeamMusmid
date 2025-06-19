@@ -89,7 +89,7 @@ public class SearchBookController {
 
         // Untuk Stok dan Jumlah Tersedia, kita perlu logika tambahan di BookService
         // Mari kita asumsikan metodenya sudah ada untuk saat ini
-        long totalStock = bookService.getTotalStockByIsbn(book.getISBN());
+        long totalStock = bookService.getTotalStockByIsbn(book.getISBN()); //error
         long availableStock = bookService.getAvailableStockByIsbn(book.getISBN());
 
         stokLabel.setText(String.valueOf(totalStock));

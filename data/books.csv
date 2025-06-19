@@ -1,0 +1,6 @@
+isbn,title,author,publisher,cover_path,category,genre,subject,quantity
+978-602-73156-1-0,Pemrograman Java Dasar,Agus Salim,Penerbit Informatika,/images/java_dasar.png,NonFiction,,Pemrograman,5
+978-979-1227-2-7,Laskar Pelangi,Andrea Hirata,Bentang Pustaka,/images/Laskar_pelangi.jpg,Fiction,Perjuangan,,3
+978-979-97312-3-4,Bumi Manusia,Pramoedya Ananta Toer,Hasta Mitra,/images/bumi_manusia.png,Fiction,Historical Fiction,,4
+978-602-03-1258-0,Cantik Itu Luka,Eka Kurniawan,Gramedia,/images/cantik_luka.png,Fiction,Magical Realism,,2
+978-602-412-518-9,Filosofi Teras,Henry Manampiring,Kompas,/images/FilosofiTeras.jpg,NonFiction,,Self-Help,6

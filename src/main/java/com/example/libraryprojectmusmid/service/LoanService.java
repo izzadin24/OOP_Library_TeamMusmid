@@ -95,6 +95,15 @@ public class LoanService {
         return true;
     }
 
+    public List<Transaction> getAllTransactionsForMember(Member member) {
+        if (member == null) {
+            return new ArrayList<>();
+        }
+        return allTransactions.stream()
+                .filter(trx -> trx.getMember().equals(member))
+                .collect(Collectors.toList());
+    }
+
     /**
      * Memproses pengembalian buku.
      * Logika ini sudah bagus dan tidak perlu diubah.

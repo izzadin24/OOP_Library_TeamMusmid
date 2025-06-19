@@ -37,6 +37,7 @@ public class MemberDashboardController {
     private void handleBukuDipinjam() {
         System.out.println("Tombol 'Riwayat Peminjaman' diklik!");
         // TODO: Arahkan ke halaman riwayat peminjaman
+        NavigationUtil.navigateTo(bukuDipinjamIconLabel, "/com/example/libraryprojectmusmid/view/HistoryView.fxml");
     }
 
     @FXML
@@ -57,7 +58,7 @@ public class MemberDashboardController {
     @FXML
     private void handleKembalikanBuku() {
         System.out.println("Tombol 'Kembalikan Buku' diklik!");
-        // TODO: Arahkan ke halaman pengembalian buku
+        NavigationUtil.navigateTo(kembalikanBukuIconLabel, "/com/example/libraryprojectmusmid/view/ReturnView.fxml");
     }
 
     // ==========================================================
